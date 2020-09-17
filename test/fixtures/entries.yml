@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  session_date: 2020-09-16
+  session_time: 2020-09-16 21:45:28
+  entry: MyText
+  wave_quality: MyString
+
+two:
+  user: two
+  session_date: 2020-09-16
+  session_time: 2020-09-16 21:45:28
+  entry: MyText
+  wave_quality: MyString

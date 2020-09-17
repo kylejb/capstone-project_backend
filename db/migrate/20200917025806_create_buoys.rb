@@ -4,8 +4,8 @@ class CreateBuoys < ActiveRecord::Migration[6.0]
       t.string :station_code
       t.string :station_name
       t.string :station_owner
-      t.float :longitude
       t.float :latitude
+      t.float :longitude
 
       t.timestamps
     end

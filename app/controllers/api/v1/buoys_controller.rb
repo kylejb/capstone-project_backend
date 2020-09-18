@@ -6,4 +6,9 @@ class Api::V1::BuoysController < ApplicationController
         render json: buoys
     end
 
+    def show
+        buoy = Buoy.first
+
+        render json: buoy
+    end
 end

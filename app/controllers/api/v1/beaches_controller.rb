@@ -3,11 +3,11 @@ class Api::V1::BeachesController < ApplicationController
     def index
         beaches = Beach.all
 
-        render json: beaches
+        render json: beaches.as_json(except: [:buoys])
     end
 
     def show
-        beach = Beach.first
+        beach = Beach.find(params[:id])
 
         render json: beach
     end

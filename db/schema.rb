@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_17_175020) do
+ActiveRecord::Schema.define(version: 2020_09_24_142024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,12 @@ ActiveRecord::Schema.define(version: 2020_09_17_175020) do
     t.float "longitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "pgm"
+    t.string "type"
+    t.float "elev"
+    t.string "met"
+    t.string "hull"
+    t.float "anemom_height"
   end
 
   create_table "entries", force: :cascade do |t|

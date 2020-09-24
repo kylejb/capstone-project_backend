@@ -42,3 +42,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Use ActiveModel::Serializer to customize JSON objects to represent a Model's relationship(s)
 gem 'active_model_serializers'
+
+# JSON Web Token
+gem 'jwt'

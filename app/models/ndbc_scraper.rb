@@ -5,29 +5,16 @@ require 'open-uri'
 module NdbcScraper
 
     def self.get_station_xml
-        ndbc_station_xml = URI.parse("https://www.ndbc.noaa.gov/metadata/stationmetadata.xml")
+        active_buoys_xml = URI.parse("https://www.ndbc.noaa.gov/activestations.xml")
 
-        ndbc_data = Net::HTTP.get(ndbc_station_xml)
+        ndbc_data = Net::HTTP.get(active_buoys_xml)
         xml = Nokogiri.XML(ndbc_data)
 
         stations = xml.xpath("//station")
 
         stations.each do |station|
-           Buoy.create!(station_code: station[:id], station_name: station[:name], station_owner: station[:owner], latitude: station.children[1]["lat"], longitude: station.children[1]["lng"], elev: station.children[1]["elev"], met: station.children[1]["met"], hull: station.children[1]["hull"], anemom_height: station.children[1]["anemom_height"] )
+           Buoy.create!(station_code: station[:id], station_name: station[:name], station_owner: station[:owner], latitude: station[:lat], longitude: station[:lon], type: station[:type], state: stationelev: station[:elev], met: station[:met], dart: station[:dart], currents: station[:currents], waterquality: station[:waterquality] )
         end
-
-            # stations[0][:id]
-            # stations[0][:name]
-            # stations[0][:owner]
-            # stations[0][:pgm]
-            # stations[0][:type]
-            # ----- 
-            # stations[0].children[1]["lat"]
-            # stations[0].children[1]["lng"]
-            # stations[0].children[1]["elev"]
-            # stations[0].children[1]["met"]
-            # stations[0].children[1]["hull"]
-            # stations[0].children[1]["anemom_height"]
     end
 
     # NDBC XML file appears to be missing 400+ buoys; designing web crawler to save the missing buoys to db

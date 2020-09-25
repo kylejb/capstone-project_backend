@@ -1,5 +1,7 @@
 class FavoriteBeachSerializer < ActiveModel::Serializer
   attributes :id, :beach
 
-  has_many :buoys
+  def beach
+    ActiveModel::SerializableResource.new(object.beach, each_serializer: BeachSerializer)
+  end
 end

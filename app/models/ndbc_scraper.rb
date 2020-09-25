@@ -17,7 +17,7 @@ module NdbcScraper
         end
     end
 
-    # NDBC XML file appears to be missing 400+ buoys; designing web crawler to save the missing buoys to db
+    # Web crawler to extract buoy specific information
     def self.get_station_links
         station_list_url ='https://www.ndbc.noaa.gov/to_station.shtml'
         html = URI.open(station_list_url)

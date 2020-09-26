@@ -1,0 +1,37 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  station_code: MyString
+  station_name: MyString
+  station_owner: MyString
+  longitude: 1.5
+  latitude: 1.5
+  wind_dir: MyString
+  wind_speed: MyString
+  wind_gust: MyString
+  wave_height: MyString
+  dom_wave_period: MyString
+  avg_wave_period: MyString
+  wave_dir: MyString
+  sea_pressure: MyString
+  air_temp: MyString
+  sea_temp: MyString
+  tide: MyString
+
+two:
+  station_code: MyString
+  station_name: MyString
+  station_owner: MyString
+  longitude: 1.5
+  latitude: 1.5
+  wind_dir: MyString
+  wind_speed: MyString
+  wind_gust: MyString
+  wave_height: MyString
+  dom_wave_period: MyString
+  avg_wave_period: MyString
+  wave_dir: MyString
+  sea_pressure: MyString
+  air_temp: MyString
+  sea_temp: MyString
+  tide: MyString

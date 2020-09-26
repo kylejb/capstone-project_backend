@@ -5,8 +5,8 @@ Rails.application.routes.draw do
       get '/user', to: 'users#show'
       post '/login', to: 'auth#create'
 
-      # resources :buoys, only: [:index]
-      resources :entries, only: [:index]
+      resources :buoys, only: [:index, :show]
+      resources :entries
       resources :beaches, only: [:index]
       resources :favorite_beaches, only: [:index]
     end

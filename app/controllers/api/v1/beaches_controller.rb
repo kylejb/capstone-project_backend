@@ -1,5 +1,5 @@
 class Api::V1::BeachesController < ApplicationController
-    skip_before_action :authorized
+    skip_before_action :authorized, only: [:index, :show]
     
     def index
         beaches = Beach.all
@@ -8,7 +8,7 @@ class Api::V1::BeachesController < ApplicationController
     end
 
     def show
-        beach = Beach.find(params[:id])
+        beach = ( params[:id] ? Beach.find(params[:id]) : Entry.find(params[:entry_id]).beach )
 
         render json: beach
     end

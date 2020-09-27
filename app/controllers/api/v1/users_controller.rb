@@ -1,7 +1,9 @@
 class Api::V1::UsersController < ApplicationController
     skip_before_action :authorized, only: [:create]
 
-    def show
+    # may be useful to load essential data to frontend (e.g., favorite_beaches or locations)
+    # when used, re-visit serializer to ensure correct behavior
+    def user_account
         render json: { user: UserSerializer.new(current_user) }, status: :accepted
     end
 

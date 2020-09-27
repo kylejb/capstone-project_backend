@@ -1,17 +1,21 @@
 class Api::V1::BuoysController < ApplicationController
-
-    # temp for testing
-    skip_before_action :authorized
+    skip_before_action :authorized, only: [:index, :show]
 
     def index
         buoys = Buoy.all
 
-        render json: buoys
+        render json: buoys, exclude: [:meteorological_data]
+    end
+
+    def beach_buoys_index
+        beach_buoys = Entry.find(params[:entry_id]).beach.buoys
+
+        render json: beach_buoys, exclude: [:meteorological_data]
     end
 
     def show
         buoy = Buoy.find(params[:id])
 
-        render json: buoy.to_json(:include => :meteorological_data)
+        render json: buoy, include: [:meteorological_data]
     end
 end

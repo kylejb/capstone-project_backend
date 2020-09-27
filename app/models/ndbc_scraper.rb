@@ -83,3 +83,13 @@ module NdbcScraper
         end
     end
 end
+
+## Note for reference when improving the scraper... should update attributes if the below is checked 'y'
+# met: indicates whether the station has reported meteorological data in the past eight
+# hours (y/n).
+# - currents: indicates whether the station has reported water current data in the past
+# eight hours (y/n).
+# - waterquality: indicates whether the station has reported ocean chemistry data in the
+# past eight hours (y/n).
+# - dart: indicates whether the station has reported water column height/tsunami data in
+# the past 24 hours (y/n).

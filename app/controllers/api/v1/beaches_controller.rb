@@ -8,7 +8,7 @@ class Api::V1::BeachesController < ApplicationController
     end
 
     def show
-        beach = ( params[:id] ? Beach.find(params[:id]) : Entry.find(params[:entry_id]).beach )
+        beach = Beach.find(params[:id])
 
         render json: beach
     end

@@ -1,15 +1,14 @@
 class Api::V1::EntriesController < ApplicationController
+    before_action :find_entry, except: [:index, :create]
 
     def index
         entries = current_user.entries
 
-        render json: entries.to_json(:except => :buoys)
+        render json: entries
     end
 
     def show
-        entry = current_user.entries.find(params[:id])
-        
-        render json: entry
+        render json: @entry
     end
 
     def create
@@ -27,14 +26,12 @@ class Api::V1::EntriesController < ApplicationController
     end
 
     def update
-        revised_entry = Entry.find(params[:id])
-        revised_entry.update(entry_params)
+        @entry.update(entry_params)
         render json: revised_entry
     end
 
     def destroy
-        entry = Entry.find(params[:id])
-        if entry.destroy
+        if @entry.destroy
             render json: { success: 'deleted entry' }, status: :accepted
         else
             render json: { error: 'failed to delete entry' }, status: :not_acceptable
@@ -46,5 +43,9 @@ class Api::V1::EntriesController < ApplicationController
 
     def entry_params
         params.require(:entry).permit(:beach_id, :session_duration, :entry, :wave_quality, :session_start_time)
+    end
+
+    def find_entry
+        @entry = Entry.find(params[:id])
     end
 end

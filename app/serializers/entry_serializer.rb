@@ -1,7 +1,8 @@
-class EntrySerializer < ActiveModel::Serializer
-  attributes :id, :entry, :session_start_time, :wave_quality, :beach
+class EntrySerializer < ApplicationSerializer
+  attributes :id, :entry, :session_start_time, :wave_quality
+  belongs_to :beach
 
-  def beach
-    ActiveModel::SerializableResource.new(object.beach, each_serializer: UserSerializer)
-  end
+  # def beach
+  #   ActiveModel::SerializableResource.new(object.beach, each_serializer: BuoySerializer)
+  # end
 end

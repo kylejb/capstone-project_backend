@@ -1,4 +1,4 @@
-class FavoriteBeachSerializer < ActiveModel::Serializer
+class FavoriteBeachSerializer < ApplicationSerializer
   attributes :id, :name, :beach
 
   def beach

@@ -4,15 +4,23 @@ Rails.application.routes.draw do
       get '/account', to: 'users#user_account'
       post '/login', to: 'auth#create'
       resources :users, only: [:create]
-      resources :buoys, only: [:index, :show]
-      resources :beaches, except: [:destroy]
-      # potentially removing in lieu of passing associations through `users#user_account`
-      resources :favorite_beaches, only: [:index]
-      
+      resources :buoys, only: [:index, :show] do
+        get '/meteorological_data' => 'buoy_meteorological_data#index'
+      end
+      resources :beaches, only: [:index, :show]
+      resources :favorite_beaches, only: [:index, :create]
+
       shallow do
         resources :entries do
-          resource :beach, only: [:show]
-          get '/beach/buoys', to: 'buoys#beach_buoys_index'
+          # beach (belongs_to :entries)
+          get '/beach' => 'entry_beach#show'
+          #TODO: this create action must be accompanied by buoy associations using lat-long
+          post '/beach' => 'entry_beach#create'
+          # patch '/beach' => 'entry_beach#update'
+          # put '/beach' => 'entry_beach#update'
+          
+          # buoys (has_many :beaches)
+          # get '/beach/buoys' => 'beach_buoys#show'
         end
       end
     end

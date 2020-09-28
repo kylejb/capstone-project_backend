@@ -9,7 +9,7 @@ class Api::V1::BuoysController < ApplicationController
     end
 
     def show
-        render json: @buoy
+        render json: @buoy.as_json(:include => :entries)
     end
 
 

@@ -18,7 +18,9 @@ class Api::V1::EntriesController < ApplicationController
         date_a = date_s.split('-')
         time_a = time_s.split(':')
 
-        new_entry = Entry.new(beach: Beach.find(params[:entry][:beach_id]), user: current_user, session_start_time: DateTime.new(date_a[0].to_i, date_a[1].to_i, date_a[2].to_i, time_a[0].to_i, time_a[1].to_i))
+        # refactor once frontend design for form is completed and enable mass assignment through strong_params; resolve date formatting and the optional beach params (will need to create new Beach if it doesn't exist)
+        #! this controller will be hit when BEACH is not passed; entry_beach WILL be hit when beach is passed through (and does not exist in DB?)
+        new_entry = Entry.new(buoy_id: params[:entry][:buoy_id], beach_id: Beach.find(params[:entry][:beach_id]), user: current_user, session_start_time: DateTime.new(date_a[0].to_i, date_a[1].to_i, date_a[2].to_i, time_a[0].to_i, time_a[1].to_i))
         new_entry.save
         new_entry.update(entry_params)
 
@@ -42,7 +44,7 @@ class Api::V1::EntriesController < ApplicationController
     private
 
     def entry_params
-        params.require(:entry).permit(:beach_id, :session_duration, :entry, :wave_quality, :session_start_time)
+        params.require(:entry).permit(:session_duration, :entry, :wave_quality, :session_start_time, :buoy_id, :beach_id)
     end
 
     def find_entry

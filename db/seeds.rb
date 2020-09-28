@@ -32,7 +32,7 @@ FavoriteBeach.create!(beach: rockaway, user: kyle)
 BuoyBeach.create!(buoy: buoy, beach: rockaway)
 BuoyBeach.create!(buoy: buoy, beach: long_beach)
 # Create association amongst beach, user, and entry
-Entry.create!(user: kyle, beach: rockaway,  session_start_time: DateTime.now, session_duration: 1, entry: "Tough paddle due to cross-shore currents, but had a few memorable rides", wave_quality: "average")
+Entry.create!(user: kyle, buoy: buoy, beach: rockaway, session_start_time: DateTime.now, session_duration: 1, entry: "Tough paddle due to cross-shore currents, but had a few memorable rides", wave_quality: "average")
 
 puts "================================"
 puts "... end"

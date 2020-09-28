@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  buoy: one
+  user: one
+  beach: one
+  name: MyString
+
+two:
+  buoy: two
+  user: two
+  beach: two
+  name: MyString

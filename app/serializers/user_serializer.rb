@@ -1,10 +1,10 @@
 class UserSerializer < ApplicationSerializer
   # beaches == favorite_beaches
-  attributes :id, :name, :email
+  attributes :id, :name, :email, :favorite_buoys
 
-  has_many :favorite_beaches do
-    object.favorite_beaches.where(created_by: current_user)
-  end
+  # has_many :favorite_beaches do
+  #   object.favorite_beaches.where(created_by: current_user)
+  # end
 
   # has_many :entries do
   #   object.entries.where(created_by: current_user)

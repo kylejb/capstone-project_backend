@@ -8,7 +8,7 @@ Rails.application.routes.draw do
         get '/meteorological_data' => 'buoy_meteorological_data#index'
       end
       resources :beaches, only: [:index, :show]
-      resources :favorite_buoys, only: [:index, :create]
+      resources :favorite_buoys, only: [:index, :create, :destroy]
       resources :favorite_beaches, only: [:index, :create]
 
       shallow do

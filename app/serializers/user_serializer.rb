@@ -1,10 +1,13 @@
-class UserSerializer < ActiveModel::Serializer
+class UserSerializer < ApplicationSerializer
   # beaches == favorite_beaches
-  attributes :id, :name, :email#, :favorite_beaches
+  attributes :id, :name, :email, :favorite_buoys
 
-  # experimenting with deep nesting
-  # def entries
-  #   ActiveModel::SerializableResource.new(object.entries, each_serializer: EntrySerializer)
+  # has_many :favorite_beaches do
+  #   object.favorite_beaches.where(created_by: current_user)
+  # end
+
+  # has_many :entries do
+  #   object.entries.where(created_by: current_user)
   # end
 
   # def beaches

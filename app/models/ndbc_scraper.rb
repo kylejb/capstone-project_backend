@@ -27,7 +27,9 @@ module NdbcScraper
     end
 
     def self.realtime_meteorological_data(station_id)
-        realtime_url = "https://www.ndbc.noaa.gov/data/realtime2/#{station_id}.txt"
+        # station_code string should be capitalized in url
+        capitalized_station_id = station_id.upcase
+        realtime_url = "https://www.ndbc.noaa.gov/data/realtime2/#{capitalized_station_id}.txt"
         begin
             content = URI.open(realtime_url).read
             arr = []
@@ -79,7 +81,17 @@ module NdbcScraper
 
     def self.run
         Buoy.all.each do |buoy_obj|
-            self.realtime_meteorological_data(buoy_obj[:station_code])
+            self.realtime_meteorological_data(buoy_obj.station_code)
         end
     end
 end
+
+## Note for reference when improving the scraper... should update attributes if the below is checked 'y'
+# met: indicates whether the station has reported meteorological data in the past eight
+# hours (y/n).
+# - currents: indicates whether the station has reported water current data in the past
+# eight hours (y/n).
+# - waterquality: indicates whether the station has reported ocean chemistry data in the
+# past eight hours (y/n).
+# - dart: indicates whether the station has reported water column height/tsunami data in
+# the past 24 hours (y/n).

@@ -1,7 +1,6 @@
 class Api::V1::BuoysController < ApplicationController
-
-    # temp for testing
-    skip_before_action :authorized
+    skip_before_action :authorized, only: [:index, :show]
+    before_action :find_buoy, except: [:index]
 
     def index
         buoys = Buoy.all
@@ -10,8 +9,13 @@ class Api::V1::BuoysController < ApplicationController
     end
 
     def show
-        buoy = Buoy.find(params[:id])
+        render json: @buoy.as_json(:include => :entries)
+    end
 
-        render json: buoy.to_json(:include => :meteorological_data)
+
+    private
+
+    def find_buoy
+        @buoy = Buoy.find(params[:id])
     end
 end

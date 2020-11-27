@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_25_032807) do
+ActiveRecord::Schema.define(version: 2020_09_28_154237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,14 +51,16 @@ ActiveRecord::Schema.define(version: 2020_09_25_032807) do
 
   create_table "entries", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "beach_id", null: false
     t.integer "session_duration"
     t.text "entry"
     t.string "wave_quality"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "session_start_time"
+    t.bigint "buoy_id", null: false
+    t.bigint "beach_id"
     t.index ["beach_id"], name: "index_entries_on_beach_id"
+    t.index ["buoy_id"], name: "index_entries_on_buoy_id"
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
@@ -70,6 +72,16 @@ ActiveRecord::Schema.define(version: 2020_09_25_032807) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["beach_id"], name: "index_favorite_beaches_on_beach_id"
     t.index ["user_id"], name: "index_favorite_beaches_on_user_id"
+  end
+
+  create_table "favorite_buoys", force: :cascade do |t|
+    t.bigint "buoy_id", null: false
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["buoy_id"], name: "index_favorite_buoys_on_buoy_id"
+    t.index ["user_id"], name: "index_favorite_buoys_on_user_id"
   end
 
   create_table "meteorological_data", force: :cascade do |t|
@@ -119,9 +131,12 @@ ActiveRecord::Schema.define(version: 2020_09_25_032807) do
   add_foreign_key "buoy_beaches", "beaches"
   add_foreign_key "buoy_beaches", "buoys"
   add_foreign_key "entries", "beaches"
+  add_foreign_key "entries", "buoys"
   add_foreign_key "entries", "users"
   add_foreign_key "favorite_beaches", "beaches"
   add_foreign_key "favorite_beaches", "users"
+  add_foreign_key "favorite_buoys", "buoys"
+  add_foreign_key "favorite_buoys", "users"
   add_foreign_key "meteorological_data", "buoys"
   add_foreign_key "spectral_wave_data", "buoys"
 end

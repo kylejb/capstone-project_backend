@@ -13,8 +13,7 @@
 
 Migrated to Python.
 
-- [Click here](https://github.com/kylejb/clairbuoyant_backend) to view the backend repository (Django).
-- [Click here](https://github.com/kylejb/clairbuoyant_frontend) to view the frontend repository (ReactJS).
+- [Click here](https://github.com/clairbuoyant) to view the new repositories.
 
 ## Author
 
